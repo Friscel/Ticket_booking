@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BusinessDataLogicTicketBooking\**" />
+    <EmbeddedResource Remove="BusinessDataLogicTicketBooking\**" />
+    <None Remove="BusinessDataLogicTicketBooking\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="BusinessDataLogicTicketBooking\BusinessDataLogicTicketBooking.csproj" />
   </ItemGroup>
 
