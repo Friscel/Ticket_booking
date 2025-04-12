@@ -9,12 +9,21 @@
 
   <ItemGroup>
     <Compile Remove="BusinessDataLogicTicketBooking\**" />
+    <Compile Remove="TicketBookingDataService\**" />
+    <Compile Remove="TicketBooking_BusinessDataLogic\**" />
+    <Compile Remove="TicketCommon\**" />
     <EmbeddedResource Remove="BusinessDataLogicTicketBooking\**" />
+    <EmbeddedResource Remove="TicketBookingDataService\**" />
+    <EmbeddedResource Remove="TicketBooking_BusinessDataLogic\**" />
+    <EmbeddedResource Remove="TicketCommon\**" />
     <None Remove="BusinessDataLogicTicketBooking\**" />
+    <None Remove="TicketBookingDataService\**" />
+    <None Remove="TicketBooking_BusinessDataLogic\**" />
+    <None Remove="TicketCommon\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="BusinessDataLogicTicketBooking\BusinessDataLogicTicketBooking.csproj" />
+    <ProjectReference Include="TicketBooking_BusinessDataLogic\TicketBooking_BusinessDataLogic.csproj" />
   </ItemGroup>
 
 </Project>
