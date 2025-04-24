@@ -117,7 +117,6 @@ namespace TicketBookingDataService
             if (string.IsNullOrWhiteSpace(title) || availableTickets <= 0)
                 return false;
 
-            // Check if movie already exists
             foreach (var movie in movies)
             {
                 if (movie.Title.Equals(title, StringComparison.OrdinalIgnoreCase))

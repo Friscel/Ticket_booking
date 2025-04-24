@@ -81,13 +81,13 @@ namespace TicketBooking_BusinessDataLogic
             return movieDataService.SearchMoviesByTitle(searchTerm);
         }
 
-        // Method to add a new movie
+        // Method to add a new movie - Admin only
         public bool AddMovie(string title, int availableTickets)
         {
             return movieDataService.AddMovie(title, availableTickets);
         }
 
-        // Method to delete a movie
+        // Method to delete a movie - Admin only
         public bool DeleteMovie(int movieIndex)
         {
             return movieDataService.DeleteMovie(movieIndex);
