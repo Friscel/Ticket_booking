@@ -1,77 +1,42 @@
-﻿using TicketBookingCommon;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketBookingCommon;
 
 namespace TicketBookingDataService
 {
     public class UserDataService
     {
-        private List<User> users = new List<User>();
+        IUserDataService userDataService;
 
         public UserDataService()
         {
-            // Initialize with some users
-            CreateDefaultUsers();
+            //userDataService = new InMemoryUserDataService();
+            //userDataService = new TextFileUserDataService();
+            //userDataService = new JsonFileUserDataService();
+            userDataService = new DBUserDataService();
         }
 
-        private void CreateDefaultUsers()
+        public List<User> GetAllUsers()
         {
-            // Add an admin user
-            users.Add(new User
-            {
-                Username = "admin",
-                Password = "admin123",
-                IsAdmin = true
-            });
-
-            // Add regular users
-            users.Add(new User
-            {
-                Username = "user1",
-                Password = "pass123",
-                IsAdmin = false
-            });
-
-            users.Add(new User
-            {
-                Username = "user2",
-                Password = "pass456",
-                IsAdmin = false
-            });
+            return userDataService.GetUsers();
         }
 
-        public bool ValidateUser(string username, string password, out bool isAdmin)
+        public void AddUser(User user)
         {
-            isAdmin = false;
-            foreach (var user in users)
-            {
-                if (user.Username == username && user.Password == password)
-                {
-                    isAdmin = user.IsAdmin;
-                    return true;
-                }
-            }
-            return false;
+            userDataService.CreateUser(user);
         }
 
-        public bool AddUser(string username, string password, bool isAdmin)
+        public void UpdateUser(User user)
         {
-            foreach (var user in users)
-            {
-                if (user.Username == username)
-                    return false;
-            }
+            userDataService.UpdateUser(user);
+        }
 
-            users.Add(new User
-            {
-                Username = username,
-                Password = password,
-                IsAdmin = isAdmin
-            });
-            return true;
+        public void RemoveUser(User user)
+        {
+            userDataService.RemoveUser(user);
         }
     }
 }

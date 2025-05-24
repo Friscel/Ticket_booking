@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketBookingDataService\TicketBookingDataService.csproj" />
+    <ProjectReference Include="..\TicketCommon\TicketBookingCommon.csproj" />
   </ItemGroup>
 
 </Project>

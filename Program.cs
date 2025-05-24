@@ -14,7 +14,7 @@ namespace TicketBooking
                                        "[4] Select Another Movie", "[5] Search Movies", "[6] Add Movie",
                                        "[7] Delete Movie", "[8] Add User", "[9] Exit" };
 
-        static BookingService bookingService = new BookingService();
+        static MovieService movieService = new MovieService();
         static UserService userService = new UserService();
         static bool isAdmin = false;
         static string currentUsername = "";
@@ -44,6 +44,7 @@ namespace TicketBooking
                     DisplayActions();
                     userAction = GetUserInput();
 
+                    // Check for exit option
                     int exitOption = isAdmin ? 9 : 6;
                     if (userAction == exitOption)
                     {
@@ -95,7 +96,6 @@ namespace TicketBooking
             {
                 key = Console.ReadKey(true);
 
-                // Ignore any key that isn't alphanumeric or special character
                 if (key.Key != ConsoleKey.Enter && key.Key != ConsoleKey.Backspace)
                 {
                     password += key.KeyChar;
@@ -116,8 +116,8 @@ namespace TicketBooking
         static void DisplayMovies()
         {
             Console.WriteLine("\nAvailable Movies:");
-            string[] movies = bookingService.GetMovies();
-            int[] availableTickets = bookingService.GetAvailableTickets();
+            string[] movies = movieService.GetMovies();
+            int[] availableTickets = movieService.GetAvailableTickets();
 
             for (int i = 0; i < movies.Length; i++)
             {
@@ -140,7 +140,7 @@ namespace TicketBooking
                         return -1;
                     }
 
-                    string[] movies = bookingService.GetMovies();
+                    string[] movies = movieService.GetMovies();
                     if (choice >= 1 && choice <= movies.Length)
                     {
                         return choice - 1; 
@@ -231,13 +231,13 @@ namespace TicketBooking
 
         static void DisplayAvailableTickets(int movieChoice)
         {
-            string[] movies = bookingService.GetMovies();
-            Console.WriteLine($"Available tickets for {movies[movieChoice]}: {bookingService.GetAvailableTicketsForMovie(movieChoice)}");
+            string[] movies = movieService.GetMovies();
+            Console.WriteLine($"Available tickets for {movies[movieChoice]}: {movieService.GetAvailableTicketsForMovie(movieChoice)}");
         }
 
         static void BookTicket(int movieChoice)
         {
-            int availableTickets = bookingService.GetAvailableTicketsForMovie(movieChoice);
+            int availableTickets = movieService.GetAvailableTicketsForMovie(movieChoice);
 
             if (availableTickets == 0)
             {
@@ -256,11 +256,12 @@ namespace TicketBooking
                     return;
                 }
 
-                if (bookingService.CheckTicketAvailability(movieChoice, numTickets))
+                if (movieService.CheckTicketAvailability(movieChoice, numTickets))
                 {
-                    if (bookingService.UpdateTickets(Actions.BookTicket, movieChoice, numTickets))
+                    if (movieService.UpdateTickets(Actions.BookTicket, movieChoice, numTickets))
                     {
                         Console.WriteLine("Ticket booked successfully.");
+                        Console.WriteLine("Data has been saved to file.");
                     }
                 }
             }
@@ -274,7 +275,7 @@ namespace TicketBooking
 
         static void CancelTicket(int movieChoice)
         {
-            int bookedTickets = bookingService.GetBookedTicketsForMovie(movieChoice);
+            int bookedTickets = movieService.GetBookedTicketsForMovie(movieChoice);
 
             if (bookedTickets == 0)
             {
@@ -293,9 +294,10 @@ namespace TicketBooking
                     return;
                 }
 
-                if (bookingService.UpdateTickets(Actions.CancelTicket, movieChoice, numTickets))
+                if (movieService.UpdateTickets(Actions.CancelTicket, movieChoice, numTickets))
                 {
                     Console.WriteLine("Ticket canceled successfully.");
+                    Console.WriteLine("Data has been saved to file.");
                 }
                 else
                 {
@@ -316,7 +318,7 @@ namespace TicketBooking
             Console.Write("Enter movie title to search: ");
             string searchTerm = Console.ReadLine();
 
-            var results = bookingService.SearchMovies(searchTerm);
+            var results = movieService.SearchMovies(searchTerm);
 
             if (results.Count == 0)
             {
@@ -350,9 +352,10 @@ namespace TicketBooking
                 return;
             }
 
-            if (bookingService.AddMovie(title, totalSeats))
+            if (movieService.AddMovie(title, totalSeats))
             {
                 Console.WriteLine($"Movie '{title}' added successfully.");
+                Console.WriteLine("Data has been saved to file.");
             }
             else
             {
@@ -371,17 +374,18 @@ namespace TicketBooking
             DisplayMovies();
             Console.Write("Enter movie number to delete: ");
 
-            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= bookingService.GetMovies().Length)
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= movieService.GetMovies().Length)
             {
-                int movieId = choice - 1;
-                string movieTitle = bookingService.GetMovies()[movieId];
+                int movieId = choice - 1; 
+                string movieTitle = movieService.GetMovies()[movieId];
 
                 Console.Write($"Are you sure you want to delete '{movieTitle}'? (Y/N): ");
                 if (Console.ReadLine().Trim().ToUpper() == "Y")
                 {
-                    if (bookingService.DeleteMovie(movieId))
+                    if (movieService.DeleteMovie(movieId))
                     {
                         Console.WriteLine("Movie deleted successfully.");
+                        Console.WriteLine("Data has been saved to file.");
                     }
                     else
                     {
@@ -415,6 +419,7 @@ namespace TicketBooking
             if (userService.RegisterUser(username, password, newUserIsAdmin))
             {
                 Console.WriteLine($"User '{username}' added successfully as {(newUserIsAdmin ? "admin" : "regular user")}.");
+                Console.WriteLine("Data has been saved to file.");
             }
             else
             {
