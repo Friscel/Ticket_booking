@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="TicketBookingCommon">
+      <HintPath>..\TicketBooking_BusinessDataLogic\bin\Debug\net8.0\TicketBookingCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TicketBooking_BusinessDataLogic">
+      <HintPath>..\TicketBooking_BusinessDataLogic\bin\Debug\net8.0\TicketBooking_BusinessDataLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

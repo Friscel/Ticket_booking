@@ -10,7 +10,7 @@ namespace TicketBooking_BusinessDataLogic
 {
     public class MovieService
     {
-        private MovieDataService movieDataService = new MovieDataService();
+        public MovieDataService movieDataService = new MovieDataService();
 
         public string[] GetMovies()
         {

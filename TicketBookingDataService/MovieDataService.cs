@@ -16,8 +16,8 @@ namespace TicketBookingDataService
         {
             //movieDataService = new InMemoryMovieDataService();
             //movieDataService = new TextFileMovieDataService();
-            //movieDataService = new JsonFileMovieDataService();
-            movieDataService = new DBMovieDataService();
+            movieDataService = new JsonFileMovieDataService();
+            //movieDataService = new DBMovieDataService();
 
         }
 
@@ -39,6 +39,7 @@ namespace TicketBookingDataService
         public void RemoveMovie(Movie movie)
         {
             movieDataService.RemoveMovie(movie);
+         
         }
     }
 }

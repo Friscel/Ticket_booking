@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TicketBookingCommon">
+      <HintPath>..\TicketBookingDataService\bin\Debug\net8.0\TicketBookingCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TicketBookingDataService">
+      <HintPath>..\TicketBookingDataService\bin\Debug\net8.0\TicketBookingDataService.dll</HintPath>
+    </Reference>
+    <Reference Include="TicketBooking_BusinessDataLogic">
+      <HintPath>..\TicketBooking_BusinessDataLogic\bin\Debug\net8.0\TicketBooking_BusinessDataLogic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

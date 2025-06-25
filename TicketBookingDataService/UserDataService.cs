@@ -15,8 +15,8 @@ namespace TicketBookingDataService
         {
             //userDataService = new InMemoryUserDataService();
             //userDataService = new TextFileUserDataService();
-            //userDataService = new JsonFileUserDataService();
-            userDataService = new DBUserDataService();
+            userDataService = new JsonFileUserDataService();
+            //userDataService = new DBUserDataService();
         }
 
         public List<User> GetAllUsers()

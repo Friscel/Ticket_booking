@@ -10,16 +10,25 @@
   <ItemGroup>
     <Compile Remove="BusinessDataLogicTicketBooking\**" />
     <Compile Remove="TicketBookingDataService\**" />
+    <Compile Remove="TicketBookingDesktop\**" />
+    <Compile Remove="TicketBookingWinForms\**" />
     <Compile Remove="TicketBooking_BusinessDataLogic\**" />
     <Compile Remove="TicketCommon\**" />
+    <Compile Remove="WebApplication1\**" />
     <EmbeddedResource Remove="BusinessDataLogicTicketBooking\**" />
     <EmbeddedResource Remove="TicketBookingDataService\**" />
+    <EmbeddedResource Remove="TicketBookingDesktop\**" />
+    <EmbeddedResource Remove="TicketBookingWinForms\**" />
     <EmbeddedResource Remove="TicketBooking_BusinessDataLogic\**" />
     <EmbeddedResource Remove="TicketCommon\**" />
+    <EmbeddedResource Remove="WebApplication1\**" />
     <None Remove="BusinessDataLogicTicketBooking\**" />
     <None Remove="TicketBookingDataService\**" />
+    <None Remove="TicketBookingDesktop\**" />
+    <None Remove="TicketBookingWinForms\**" />
     <None Remove="TicketBooking_BusinessDataLogic\**" />
     <None Remove="TicketCommon\**" />
+    <None Remove="WebApplication1\**" />
   </ItemGroup>
 
   <ItemGroup>
