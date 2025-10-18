@@ -35,4 +35,9 @@
     <ProjectReference Include="TicketBooking_BusinessDataLogic\TicketBooking_BusinessDataLogic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.14.1" />
+    <PackageReference Include="MimeKit" Version="4.14.0" />
+  </ItemGroup>
+
 </Project>

@@ -8,6 +8,7 @@ namespace TicketBooking_BusinessDataLogic
 {
     public enum Actions
     {
+
         ViewTickets,
         BookTicket,
         CancelTicket

@@ -16,8 +16,8 @@ namespace TicketBookingDataService
         {
             //movieDataService = new InMemoryMovieDataService();
             //movieDataService = new TextFileMovieDataService();
-            movieDataService = new JsonFileMovieDataService();
-            //movieDataService = new DBMovieDataService();
+            //movieDataService = new JsonFileMovieDataService();
+            movieDataService = new DBMovieDataService();
 
         }
 

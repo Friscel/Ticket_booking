@@ -39,9 +39,9 @@ namespace TicketBookingDataService
         {
             var defaultUsers = new List<User>
             {
-                new User { Username = "admin", Password = "admin123", IsAdmin = true },
-                new User { Username = "user1", Password = "pass123", IsAdmin = false },
-                new User { Username = "user2", Password = "pass456", IsAdmin = false }
+                new User { Username = "admin", Password = "admin123", IsAdmin = true, Email = "admin@example.com" },
+        new User { Username = "user1", Password = "pass123", IsAdmin = false, Email = "user1@example.com" },
+        new User { Username = "user2", Password = "pass456", IsAdmin = false, Email = "user2@example.com" }
             };
 
             users = defaultUsers;
