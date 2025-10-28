@@ -7,10 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.14.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BusinessDataLogicTicketBooking">
+      <HintPath>..\BusinessDataLogicTicketBooking\bin\Debug\net8.0\BusinessDataLogicTicketBooking.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.AspNetCore.Swagger">
+      <HintPath>bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.AspNetCore.SwaggerGen">
+      <HintPath>bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.AspNetCore.SwaggerUI">
+      <HintPath>bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll</HintPath>
+    </Reference>
     <Reference Include="TicketBookingCommon">
       <HintPath>..\TicketBookingDataService\bin\Debug\net8.0\TicketBookingCommon.dll</HintPath>
     </Reference>
@@ -19,6 +32,9 @@
     </Reference>
     <Reference Include="TicketBooking_BusinessDataLogic">
       <HintPath>..\TicketBooking_BusinessDataLogic\bin\Debug\net8.0\TicketBooking_BusinessDataLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="WebApplication1">
+      <HintPath>bin\Debug\net8.0\WebApplication1.dll</HintPath>
     </Reference>
   </ItemGroup>
 

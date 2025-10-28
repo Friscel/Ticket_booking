@@ -1,8 +1,8 @@
 ﻿using TicketBookingCommon;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TicketBooking_BusinessDataLogic;
 using TicketBookingDataService;
+using TicketBookingWebAPI.Services; // ✅ Add this using statement
 
 namespace TicketBookingWebAPI.Controllers
 {
@@ -10,7 +10,15 @@ namespace TicketBookingWebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        UserService userService = new UserService();
+        private readonly UserService _userService;
+        private readonly EmailService _emailService;
+
+        // ✅ Constructor with dependency injection for EmailService
+        public UserController(EmailService emailService)
+        {
+            _userService = new UserService();
+            _emailService = emailService;
+        }
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
@@ -20,7 +28,7 @@ namespace TicketBookingWebAPI.Controllers
                 return BadRequest(new { success = false, message = "Username and password are required" });
             }
 
-            bool isAuthenticated = userService.AuthenticateUser(request.Username, request.Password, out bool isAdmin);
+            bool isAuthenticated = _userService.AuthenticateUser(request.Username, request.Password, out bool isAdmin);
 
             if (isAuthenticated)
             {
@@ -38,18 +46,25 @@ namespace TicketBookingWebAPI.Controllers
                 return BadRequest(new { success = false, message = "Username and password are required" });
             }
 
-            var result = userService.RegisterUser(request.Username, request.Password, request.IsAdmin);
+            var result = _userService.RegisterUser(request.Username, request.Password, request.IsAdmin);
 
             if (result)
             {
-                return Ok(new { success = true, message = "User registered successfully" });
+                // ✅ Send Mailtrap email notification after successful registration
+                _emailService.SendEmail(
+                    "test@yourmailtrap.io", // can be any email, Mailtrap captures it
+                    "Registration Successful",
+                    $"<h3>Welcome, {request.Username}!</h3><p>Your account has been successfully registered.</p>"
+                );
+
+                return Ok(new { success = true, message = "User registered successfully. Email sent." });
             }
 
             return BadRequest(new { success = false, message = "Failed to register user. Username may already exist." });
         }
     }
 
-    // Request DTOs
+    // ✅ DTOs remain the same
     public class LoginRequest
     {
         public string Username { get; set; }

@@ -13,6 +13,8 @@ namespace WebApplication1
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddTransient<TicketBookingWebAPI.Services.EmailService>();
+
 
             var app = builder.Build();
 
